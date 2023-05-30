@@ -1,6 +1,9 @@
 const {Router} = require('express');
+const UserController =require('../controllers/User.controller');
 
 const router = Router();
-router.get('/user');
+router.post('/user', UserController.createUser);
+router.get('/users', UserController.findAll);
+router.get('/user/:id', UserController.findByPK);
 
 module.exports = router;
