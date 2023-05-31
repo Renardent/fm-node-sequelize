@@ -16,43 +16,42 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     firstName: {
       field:'first_name',
-      type:DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull:false,
       validate: {
         notEmpty: true,
-        notNull: true,
-        // min:1,
-        // max:200
+        notNull: true
   }},
     lastName: {
       field:'last_name',
-      type:DataTypes.STRING,
-      allowNull:false},
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notEmpty: true,
+        notNull: true
+      }
+    },
     email: {
       type:DataTypes.STRING,
       allowNull:false,
       unique: true,
       validate:{
         isEmail: true
-    }},
+    }
+  },
     password: {
       type:DataTypes.TEXT,
       allowNull:false
     },
     birthday: {
-      type:DataTypes.DATEONLY,
-      allowNull:false,
+      type: DataTypes.DATEONLY,
       validate: {
-        notNull:true,
         isDate:true,
-        isValidDate (value) {
-          if(ifAfter(new Date(value), new Date())) {
-            throw new Error('Your birthday must be earlier today')
-          }
-        }
+        isBefore: new Date().toDateString()
       }},
     gender: {
-      type:DataTypes.STRING}
+      type:DataTypes.STRING
+    }
   }, 
   {
     sequelize,
