@@ -47,17 +47,35 @@ module.exports.deleteByPK = async (req,res,next) => {
     }
 }
 
+// module.exports.updateUser = async (req,res,next) => {
+//     try {
+//         const {params: {id}, body} = req;
+//         const updatedUser = await User.update(body, {
+//                 where: {
+//                     id
+//                 }
+//     });
+//     console.log(updatedUser);
+//     return res.status(200).send();
+//     } catch(error) {
+//         next(error);
+//     }
+// }
+
+///static method
+///беремо статичні дані
+
 module.exports.updateUser = async (req,res,next) => {
     try {
         const {params: {id}, body} = req;
-        const updatedUser = await User.update(body, {
-                where: {
-                    id
-                }
-    });
-    console.log(updatedUser);
-    return res.status(200).send();
+        const foundedUser = await User.findByPK(id);
+        console.log(foundedUser);
+        const result = await foundedUser.update(body);
+        return res.status(200).send(result);
     } catch(error) {
         next(error);
     }
 }
+
+///instance method
+///на основі даних, що прийщли з айді(одного рядка), взяти його як екземпляр і передати йому тіло на оновлення і оновити інстенс
