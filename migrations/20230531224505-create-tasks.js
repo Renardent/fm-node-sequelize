@@ -9,13 +9,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        field: 'user_id',
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'users',
+            key: 'id'
+          }
+        }
+      },
       body: {
         type: Sequelize.STRING,
-        llowNull: false
+        allowNull: false
       },
-      idDone: {
+      isDone: {
         field: 'is_done',
-        llowNull: false,
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       deadline: {
