@@ -21,9 +21,10 @@ module.exports.findAll = async (req, res, next) => {
 
 module.exports.findByPK = async (req,res,next) => {
     try {
-        const {params: {id}} = req;
-        const findOne = await User.findByPK(id);
-        return res.status(200).send(findOne);
+        // const {params: {id}} = req;
+        // const findOne = await User.findByPk(id);
+        const {userInstance} = req;
+        return res.status(200).send(userInstance);
     } catch(error) {
         next(error);
     }
@@ -67,10 +68,10 @@ module.exports.deleteByPK = async (req,res,next) => {
 
 module.exports.updateUser = async (req,res,next) => {
     try {
-        const {params: {id}, body} = req;
-        const foundedUser = await User.findByPK(id);
-        console.log(foundedUser);
-        const result = await foundedUser.update(body);
+        // const {params: {id}, body} = req;
+        // const foundedUser = await User.findByPk(id);
+        const {userInstance} = req;
+        const result = await userInstance.update(body);
         return res.status(200).send(result);
     } catch(error) {
         next(error);
