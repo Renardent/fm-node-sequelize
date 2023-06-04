@@ -8,7 +8,8 @@ const groupRouter = Router();
 groupRouter.post('/', GroupController.createGroup);
 groupRouter.get('/', pagination, GroupController.getAllGroups);
 groupRouter.put('/:userId/:groupId', getUserInstance, GroupController.addUserToGroup);
-groupRouter.get('/:userId', getUserInstance, GroupController.getUserGroups);
+groupRouter.get('/user/:userId', getUserInstance, GroupController.getUserGroups);
+groupRouter.get('/:groupId', GroupController.getGroupWithAllUsers);
 groupRouter.delete('/:userId/:groupId', getUserInstance, GroupController.deleteUserFromGroup);
 
 module.exports = groupRouter;
