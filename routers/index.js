@@ -4,7 +4,7 @@ const taskRouter = require('./taskRouter');
 const groupRouter = require('./groupRouter');
 
 const router = Router();
-router.use('/users', userRouter);
+router.use('/user', userRouter);
 //виносимо маршрути в інші файли з першою адресою
 router.use('/task', taskRouter);
 router.use('/groups', groupRouter);
