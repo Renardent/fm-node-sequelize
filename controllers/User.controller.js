@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const {User, Group} = require('../models');
 
 module.exports.createUser = async (req, res, next) => {
     try{
@@ -80,3 +80,16 @@ module.exports.updateUser = async (req,res,next) => {
 
 ///instance method
 ///на основі даних, що прийщли з айді(одного рядка), взяти його як екземпляр і передати йому тіло на оновлення і оновити інстенс
+
+
+module.exports.getUserWithGroups = async (req, res, next) => {
+    try {
+        const {params: {userId}} = req;
+        const userWithGroups = await User.findByPk(userId, {
+            include: [Group]
+        });
+        res.status(200).send(userWithGroups);
+    } catch(error) {
+        next(error);
+    }
+} 

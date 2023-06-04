@@ -24,12 +24,12 @@ module.exports = {
           model: {
             tableName: 'users',
             key: 'id'
-          }
+          },
         },
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      groupId : {
+      groupId: {
         field: 'group_id',
         type: Sequelize.INTEGER,
         allowNull: false,
