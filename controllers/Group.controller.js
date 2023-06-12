@@ -76,3 +76,15 @@ module.exports.getGroupWithAllUsers = async (req, res, next) => {
         next(error);
     }
 } 
+
+
+module.exports.createGroupImage = async(req,res,next) => {
+    try {
+        const {params: {groupId}} = req;
+        console.log(req.file);
+        res.send({groupId});
+
+    } catch (error) {
+        next(error);
+    }
+}
